@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crypto VASP Compliance Self-Assessment</title>
+  <meta name="description" content="Crypto VASP Compliance Self-Assessment">
+  <style>
+    :root{
+      --bg:#f5f7fb; --card:#ffffff; --ink:#111827;
+      --brand:#0A84FF; --brand-deep:#0656c7; --ring:0 0 0 3px rgba(10,132,255,.30);
+      --border:#e5e7eb;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+      background:var(--bg); color:var(--ink);
+    }
+    .wrap{max-width:1100px;margin:32px auto 80px;padding:0 16px}
+    header{background:var(--brand);color:#fff;padding:24px 20px;text-align:center}
+    .logo img{max-height:120px;height:auto;width:auto;margin-bottom:12px}
+    h1{font-size:clamp(1.8rem,3vw,2.5rem);margin:0;color:#fff}
+    .badge{font-size:.8rem;color:#fff;background:rgba(255,255,255,0.2);padding:6px 10px;border-radius:999px;display:inline-block;margin-top:10px}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 10px 24px rgba(10,50,120,.06)}
+    fieldset{border:1px solid var(--border);border-radius:14px;padding:14px;margin:0 0 14px}
+    legend{padding:0 8px;color:var(--brand-deep); font-weight:700}
+    label{display:block; margin:10px 0; line-height:1.35}
+    p.muted{color:#6b7280; margin:6px 0 10px}
+    input[type="text"], input[type="email"], input[type="number"], input[type="date"], textarea, select{
+      width:100%; background:#fff; color:var(--ink);
+      border:1px solid #d1d5db; border-radius:10px; padding:10px 12px; outline:none;
+    }
+    input:focus, textarea:focus, select:focus{ box-shadow:var(--ring); border-color:var(--brand)}
+    .row{display:grid; gap:10px; grid-template-columns:1fr}
+    @media(min-width:720px){.row.two{grid-template-columns:1fr 1fr}}
+    .controls{position:sticky; bottom:0; inset-inline:0; background:linear-gradient(180deg,rgba(245,247,251,0),rgba(245,247,251,.95)); padding:14px 0 0; margin-top:18px}
+    .bar{display:flex; gap:10px; flex-wrap:wrap}
+    button{
+      appearance:none;border:1px solid #cfd6e4; background:#fff;color:var(--ink);
+      padding:10px 14px; border-radius:12px; cursor:pointer; font-weight:600
+    }
+    button.primary{background:var(--brand); border-color:transparent; color:#fff}
+    button:focus{box-shadow:var(--ring)}
+    .footer{margin-top:18px; font-size:.85rem; color:#374151}
+    .notice{margin-top:8px; font-size:.9rem}
+    @media print{
+      body{background:#fff;color:#000}
+      .wrap{margin:0;max-width:none;padding:0}
+      .controls{display:none}
+      .card{box-shadow:none;border:1px solid #999}
+      header{background:#fff;color:#000;box-shadow:none}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="2.png" alt="de Risk Partners Logo">
+    </div>
+    <h1>Crypto VASP Compliance Self-Assessment</h1>
+    <span class="badge" id="saveState">Draft not saved</span>
+  </header>
+
+  <div class="wrap">
+    <!-- Email-enabled via FormSubmit -->
+    <form
+      id="vaspForm"
+      class="card"
+      action="https://formsubmit.co/aaraiz@deriskpartners.io"
+      method="POST"
+      autocomplete="on"
+    >
+      <!-- FormSubmit options -->
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_subject" value="New Crypto VASP Assessment Submission">
+      <input type="hidden" name="_template" value="table">
+      <!-- Optional: redirect after submit (update this URL if you have a thank-you page) -->
+      <!-- <input type="hidden" name="_next" value="https://your-domain.com/thank-you.html"> -->
+      <!-- Honeypot (spam trap) -->
+      <input type="text" name="_honey" style="display:none">
+
+      <p class="muted notice">
+        <strong>Note:</strong> Your answers auto-save in this browser. Use <em>Save/Print PDF</em> to export.
+        When you click <em>Submit</em>, a copy will be sent to <strong>aaraiz@deriskpartners.io</strong>.
+      </p>
+
+      <section class="row two">
+        <div>
+          <label>Company
+            <input name="Company" type="text" required placeholder="Company legal name" />
+          </label>
+        </div>
+        <div>
+          <label>Respondent - Name
+            <input name="Respondent - Name" type="text" required placeholder="Your name" />
+          </label>
+          <label style="margin-top:10px">Respondent - Title
+            <input name="Respondent - Title" type="text" placeholder="Your title" />
+          </label>
+        </div>
+      </section>
+
+      <section class="row two">
+        <div>
+          <label>Respondent - Email
+            <input name="email" type="email" placeholder="you@example.com" />
+          </label>
+        </div>
+        <div>
+          <label>Date
+            <input name="Date" type="date" />
+          </label>
+        </div>
+      </section>
+
+      <section class="row two">
+        <div>
+          <label>Jurisdiction (Primary)
+            <input name="Jurisdiction (Primary)" type="text" placeholder="e.g., Singapore" />
+          </label>
+        </div>
+      </section>
+
+      <!-- 1. Regulatory Licenses -->
+      <fieldset>
+        <legend>1. Regulatory Licenses</legend>
+        <p class="muted">Do you hold required licenses/registrations in your operating jurisdictions?</p>
+        <label><input type="radio" name="1. Regulatory Licenses - Status" value="Yes, fully licensed in all jurisdictions" required> Yes, fully licensed in all jurisdictions</label>
+        <label><input type="radio" name="1. Regulatory Licenses - Status" value="Partially licensed (missing jurisdictions specified below)"> Partially licensed (specify which missing): <input name="1. Regulatory Licenses - Missing jurisdictions" type="text" placeholder="Jurisdictions missing" /></label>
+        <label><input type="radio" name="1. Regulatory Licenses - Status" value="No licenses held"> No licenses held</label>
+        <label><input type="radio" name="1. Regulatory Licenses - Status" value="Pending applications (details provided below)"> Pending applications (specify): <input name="1. Regulatory Licenses - Pending applications detail" type="text" placeholder="Applications" /></label>
+        <label><input type="radio" name="1. Regulatory Licenses - Status" value="Operating under a no-action letter or sandbox exemption (details provided below)"> Operating under a no-action letter or sandbox exemption (specify): <input name="1. Regulatory Licenses - No-action/sandbox detail" type="text" placeholder="Details" /></label>
+
+        <div class="row two" style="margin-top:8px">
+          <label>1. Regulatory Licenses - PSA Status (Payment Services Act)
+            <select name="1. Regulatory Licenses - PSA Status">
+              <option value="">— Select —</option>
+              <option value="Licensed">Licensed</option>
+              <option value="Exempt">Exempt</option>
+              <option value="Sandbox approval">Sandbox approval</option>
+              <option value="Application submitted">Application submitted</option>
+              <option value="No license / N/A">No license / N/A</option>
+            </select>
+          </label>
+          <label>1. Regulatory Licenses - Notes
+            <input name="1. Regulatory Licenses - Notes" type="text" placeholder="Any comments" />
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 2. AML/KYC Program -->
+      <fieldset>
+        <legend>2. AML/KYC Program</legend>
+        <p class="muted">Do you have a functioning AML/KYC program with transaction monitoring?</p>
+        <label><input type="radio" name="2. AML/KYC Program - Maturity" value="Yes, full program with automated monitoring" required> Yes, full program with automated monitoring</label>
+        <label><input type="radio" name="2. AML/KYC Program - Maturity" value="Basic program, manual monitoring"> Basic program, manual monitoring</label>
+        <label><input type="radio" name="2. AML/KYC Program - Maturity" value="Limited program in development"> Limited program in development</label>
+        <label><input type="radio" name="2. AML/KYC Program - Maturity" value="Hybrid model (internal + vendor)"> Hybrid model (internal + vendor)</label>
+        <label><input type="radio" name="2. AML/KYC Program - Maturity" value="No formal program"> No formal program</label>
+
+        <label style="margin-top:10px">2. AML/KYC Program - AML Officer
+          <input name="2. AML/KYC Program - AML Officer" type="text" placeholder="Name" />
+        </label>
+      </fieldset>
+
+      <!-- 3. Customer Fund Protection -->
+      <fieldset>
+        <legend>3. Customer Fund Protection</legend>
+        <p class="muted">
+          Are customer funds segregated and protected? Are funds held directly or via a third-party custodian (e.g., Fireblocks, Anchorage)?
+        </p>
+        <label>3. Customer Fund Protection - Custodian (if any)
+          <input name="3. Customer Fund Protection - Custodian" type="text" placeholder="e.g., Fireblocks, Anchorage" />
+        </label>
+        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Yes, fully segregated with insurance" required> Yes, fully segregated with insurance</label>
+        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Segregated, no insurance"> Segregated, no insurance</label>
+        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Partially segregated"> Partially segregated</label>
+        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Not segregated"> Not segregated</label>
+        <div class="row two">
+          <label>3. Customer Fund Protection - Cold storage %
+            <input name="3. Customer Fund Protection - Cold storage %" type="number" min="0" max="100" step="1" placeholder="%" />
+          </label>
+          <label>3. Customer Fund Protection - Insurance coverage (USD)
+            <input name="3. Customer Fund Protection - Insurance coverage (USD)" type="number" min="0" step="1" placeholder="$" />
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 4. Legal Issues -->
+      <fieldset>
+        <legend>4. Legal Issues</legend>
+        <p class="muted">Any ongoing legal/regulatory proceedings or violations in past 3 years?</p>
+        <label><input type="radio" name="4. Legal Issues - Status" value="No issues" required> No issues</label>
+        <label><input type="radio" name="4. Legal Issues - Status" value="Minor issues (resolved)"> Minor issues (resolved)</label>
+        <label><input type="radio" name="4. Legal Issues - Status" value="Active proceedings"> Active proceedings</label>
+        <label><input type="radio" name="4. Legal Issues - Status" value="Major violations/penalties"> Major violations/penalties</label>
+        <label>4. Legal Issues - Details
+          <textarea name="4. Legal Issues - Details" rows="3" placeholder="Specify jurisdiction or regulator"></textarea>
+        </label>
+      </fieldset>
+
+      <!-- 5. Geographic Restrictions -->
+      <fieldset>
+        <legend>5. Geographic Restrictions</legend>
+        <p class="muted">Do you block prohibited jurisdictions (sanctioned countries)?</p>
+        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="Yes, comprehensive geo-blocking" required> Yes, comprehensive geo-blocking</label>
+        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="Partial restrictions"> Partial restrictions</label>
+        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="No restrictions"> No restrictions</label>
+        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="Under development"> Under development</label>
+
+        <label style="margin-top:8px">5. Geographic Restrictions - Prohibited jurisdictions
+          <input name="5. Geographic Restrictions - Prohibited jurisdictions" type="text" placeholder="e.g., DPRK, Iran" />
+        </label>
+        <div>
+          <span class="muted">Geo-blocking enforced via:</span>
+          <label><input type="checkbox" name="5. Geographic Restrictions - Enforcement methods[]" value="IP filtering"> IP filtering</label>
+          <label><input type="checkbox" name="5. Geographic Restrictions - Enforcement methods[]" value="Wallet screening"> Wallet screening</label>
+          <label><input type="checkbox" name="5. Geographic Restrictions - Enforcement methods[]" value="List enforcement tools"> List enforcement tools</label>
+        </div>
+      </fieldset>
+
+      <!-- 6. Security Framework -->
+      <fieldset>
+        <legend>6. Security Framework</legend>
+        <p class="muted">Do you follow cybersecurity standards and conduct regular audits?</p>
+        <label><input type="radio" name="6. Security Framework - Level" value="Yes, certified framework (ISO 27001/SOC 2)" required> Yes, certified framework (ISO 27001/SOC 2)</label>
+        <label><input type="radio" name="6. Security Framework - Level" value="Internal standards, regular audits"> Internal standards, regular audits</label>
+        <label><input type="radio" name="6. Security Framework - Level" value="External audit without certification"> External audit without certification</label>
+        <label><input type="radio" name="6. Security Framework - Level" value="Basic security measures"> Basic security measures</label>
+        <label><input type="radio" name="6. Security Framework - Level" value="Limited security program"> Limited security program</label>
+        <div class="row two">
+          <label>6. Security Framework - Last security audit
+            <input name="6. Security Framework - Last security audit" type="date" />
+          </label>
+          <label>6. Security Framework - Bug bounty program
+            <select name="6. Security Framework - Bug bounty program">
+              <option value="">— Select —</option>
+              <option value="Yes">Yes</option>
+              <option value="No">No</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 7. Management Experience -->
+      <fieldset>
+        <legend>7. Management Experience</legend>
+        <p class="muted">Do key executives have financial services/compliance experience?</p>
+        <label><input type="radio" name="7. Management Experience - Level" value="Yes, extensive regulatory experience" required> Yes, extensive regulatory experience</label>
+        <label><input type="radio" name="7. Management Experience - Level" value="Some financial services background"> Some financial services background</label>
+        <label><input type="radio" name="7. Management Experience - Level" value="Limited relevant experience"> Limited relevant experience</label>
+        <div class="row two">
+          <label>7. Management Experience - CEO background
+            <input name="7. Management Experience - CEO background" type="text" />
+          </label>
+          <label>7. Management Experience - CCO background
+            <input name="7. Management Experience - CCO background" type="text" />
+          </label>
+        </div>
+      </fieldset>
+
+      <!-- 8. Banking & Key Vendors -->
+      <fieldset>
+        <legend>8. Banking & Key Vendors</legend>
+        <p class="muted">Do you have established banking relationships and compliance vendors?</p>
+        <label><input type="radio" name="8. Banking & Vendors - Status" value="Yes, tier-1 banks and compliance tools" required> Yes, tier-1 banks and compliance tools</label>
+        <label><input type="radio" name="8. Banking & Vendors - Status" value="Regional banks, basic tools"> Regional banks, basic tools</label>
+        <label><input type="radio" name="8. Banking & Vendors - Status" value="Limited banking, developing tools"> Limited banking, developing tools</label>
+        <label><input type="radio" name="8. Banking & Vendors - Status" value="No stable banking relationships"> No stable banking relationships</label>
+
+        <div class="row two">
+          <label>8. Banking & Vendors - Primary bank
+            <input name="8. Banking & Vendors - Primary bank" type="text" />
+          </label>
+          <label>8. Banking & Vendors - Fiat on/off ramps managed
+            <select name="8. Banking & Vendors - Fiat on/off ramps managed">
+              <option value="">— Select —</option>
+              <option value="Internal">Internal</option>
+              <option value="Third-party partner">Third-party partner</option>
+            </select>
+          </label>
+        </div>
+        <label>8. Banking & Vendors - Partner name (if applicable)
+          <input name="8. Banking & Vendors - Partner name" type="text" />
+        </label>
+      </fieldset>
+
+      <!-- 9. Financial Controls -->
+      <fieldset>
+        <legend>9. Financial Controls</legend>
+        <p class="muted">Are you audited and maintain proper financial controls?</p>
+        <label><input type="radio" name="9. Financial Controls - Level" value="Yes, Big 4 audited with clean opinion" required> Yes, Big 4 audited with clean opinion</label>
+        <label><input type="radio" name="9. Financial Controls - Level" value="Regional firm audited"> Regional firm audited</label>
+        <label><input type="radio" name="9. Financial Controls - Level" value="Documented internal controls with review"> Documented internal controls with review</label>
+        <label><input type="radio" name="9. Financial Controls - Level" value="Limited financial controls"> Limited financial controls</label>
+        <label>9. Financial Controls - Last audit date
+          <input name="9. Financial Controls - Last audit date" type="date" />
+        </label>
+      </fieldset>
+
+      <!-- 10. Regulatory Readiness -->
+      <fieldset>
+        <legend>10. Regulatory Readiness</legend>
+        <p class="muted">Are you prepared for upcoming regulatory changes?</p>
+        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Yes, actively monitoring and adapting" required> Yes, actively monitoring and adapting</label>
+        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Aware of changes, planning adaptation"> Aware of changes, planning adaptation</label>
+        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Limited awareness"> Limited awareness</label>
+        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Not prepared for changes"> Not prepared for changes</label>
+        <label>10. Regulatory Readiness - Biggest upcoming regulatory concern
+          <input name="10. Regulatory Readiness - Biggest concern" type="text" />
+        </label>
+        <p class="muted" style="margin-top:8px">Are you in industry groups (e.g., TRM Labs, GBBC, ADGM Sandbox)?</p>
+        <label><input type="radio" name="10. Regulatory Readiness - Industry groups" value="Yes (list provided below)" required> Yes (list below)</label>
+        <label><input type="radio" name="10. Regulatory Readiness - Industry groups" value="No"> No</label>
+        <label>10. Regulatory Readiness - Working Groups
+          <textarea name="10. Regulatory Readiness - Working Groups" rows="2"></textarea>
+        </label>
+      </fieldset>
+
+      <!-- 11. Token or Asset Risk Classification -->
+      <fieldset>
+        <legend>11. Token or Asset Risk Classification</legend>
+        <p class="muted">Do you maintain a framework for determining whether an asset is a security or requires regulatory treatment?</p>
+        <label><input type="radio" name="11. Token/Asset Classification - Framework" value="Yes, internal legal opinion framework" required> Yes, internal legal opinion framework</label>
+        <label><input type="radio" name="11. Token/Asset Classification - Framework" value="Yes, external counsel reviews"> Yes, external counsel reviews</label>
+        <label><input type="radio" name="11. Token/Asset Classification - Framework" value="No formal framework"> No formal framework</label>
+        <label><input type="radio" name="11. Token/Asset Classification - Framework" value="N/A (no listing/token services)"> N/A (no listing/token services)</label>
+      </fieldset>
+
+      <!-- 12. Disclosures & Transparency -->
+      <fieldset>
+        <legend>12. Disclosures & Transparency</legend>
+        <p class="muted">Do you provide public financial or operational disclosures (e.g., proof-of-reserves, attestation reports, risk disclosures)?</p>
+        <label><input type="radio" name="12. Disclosures & Transparency - Frequency" value="Yes, monthly / quarterly" required> Yes, monthly / quarterly</label>
+        <label><input type="radio" name="12. Disclosures & Transparency - Frequency" value="Yes, annually"> Yes, annually</label>
+        <label><input type="radio" name="12. Disclosures & Transparency - Frequency" value="No public disclosures"> No public disclosures</label>
+      </fieldset>
+
+      <div class="controls">
+        <div class="bar">
+          <button type="submit" class="primary">Submit</button>
+          <button type="button" id="printBtn">Save/Print PDF</button>
+          <button type="reset" id="resetBtn">Reset</button>
+        </div>
+        <div class="footer">Disclaimer: This self-assessment is for informational purposes only and does not constitute legal advice.</div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // ---------- Autosave to localStorage (text, radios, checkbox arrays) ----------
+    const form = document.getElementById('vaspForm');
+    const saveBadge = document.getElementById('saveState');
+    const printBtn = document.getElementById('printBtn');
+    const KEY = 'vasp_self_assessment_v1';
+
+    function getFormDataObject() {
+      const data = {};
+      Array.from(form.elements).forEach(el => {
+        if (!el.name || el.type === 'button' || el.type === 'submit') return;
+
+        if (el.type === 'checkbox') {
+          const name = el.name;
+          if (name.endsWith('[]')) {
+            if (!data[name]) data[name] = [];
+            if (el.checked) data[name].push(el.value);
+          } else {
+            data[name] = el.checked;
+          }
+          return;
+        }
+        if (el.type === 'radio') {
+          const group = form.querySelectorAll(`input[type="radio"][name="${CSS.escape(el.name)}"]`);
+          const selected = Array.from(group).find(r => r.checked);
+          data[el.name] = selected ? selected.value : (data[el.name] ?? '');
+          return;
+        }
+        if (el.tagName === 'SELECT' && el.multiple) {
+          data[el.name] = Array.from(el.selectedOptions).map(o => o.value);
+        } else {
+          data[el.name] = el.value;
+        }
+      });
+      return data;
+    }
+
+    function saveDraft() {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(getFormDataObject()));
+        if (saveBadge) saveBadge.textContent = 'Draft saved';
+      } catch (e) {
+        if (saveBadge) saveBadge.textContent = 'Save failed (storage full?)';
+      }
+    }
+    function loadDraft() {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      const data = JSON.parse(raw);
+
+      Object.entries(data).forEach(([name, value]) => {
+        const nodes = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
+        if (!nodes.length) return;
+        const el = nodes[0];
+
+        if (el.type === 'radio') {
+          nodes.forEach(r => r.checked = (r.value === value));
+          return;
+        }
+        if (el.type === 'checkbox') {
+          if (name.endsWith('[]') && Array.isArray(value)) {
+            nodes.forEach(c => c.checked = value.includes(c.value));
+          } else if (typeof value === 'boolean') {
+            el.checked = value;
+          }
+          return;
+        }
+        if (el.tagName === 'SELECT' && el.multiple && Array.isArray(value)) {
+          Array.from(el.options).forEach(opt => opt.selected = value.includes(opt.value));
+        } else {
+          el.value = value ?? '';
+        }
+      });
+      if (saveBadge) saveBadge.textContent = 'Draft loaded';
+    }
+    function clearDraft() {
+      localStorage.removeItem(KEY);
+      if (saveBadge) saveBadge.textContent = 'Draft cleared';
+    }
+
+    // Save on any input changes
+    form.addEventListener('input', saveDraft);
+
+    // Reset clears storage
+    document.getElementById('resetBtn').addEventListener('click', () => { setTimeout(clearDraft, 0); });
+
+    // Print to PDF
+    printBtn.addEventListener('click', () => { window.print(); });
+
+    // Load on start
+    loadDraft();
+  </script>
+</body>
+</html>
