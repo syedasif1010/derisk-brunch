@@ -9,7 +9,7 @@
     :root{
       --bg:#f5f7fb; --card:#ffffff; --ink:#111827;
       --brand:#0A84FF; --brand-deep:#0656c7; --ring:0 0 0 3px rgba(10,132,255,.30);
-      --border:#e5e7eb;
+      --border:#e5e7eb; --green:#10b981; --red:#ef4444;
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%}
@@ -22,7 +22,7 @@
     .logo img{max-height:120px;height:auto;width:auto;margin-bottom:12px}
     h1{font-size:clamp(1.8rem,3vw,2.5rem);margin:0;color:#fff}
     .badge{font-size:.8rem;color:#fff;background:rgba(255,255,255,0.2);padding:6px 10px;border-radius:999px;display:inline-block;margin-top:10px}
-    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 10px 24px rgba(10,50,120,.06)}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;box-shadow:0 10px 24px rgba(10,50,120,.06); margin-top:16px}
     fieldset{border:1px solid var(--border);border-radius:14px;padding:14px;margin:0 0 14px}
     legend{padding:0 8px;color:var(--brand-deep); font-weight:700}
     label{display:block; margin:10px 0; line-height:1.35}
@@ -44,6 +44,16 @@
     button:focus{box-shadow:var(--ring)}
     .footer{margin-top:18px; font-size:.85rem; color:#374151}
     .notice{margin-top:8px; font-size:.9rem}
+    .pill{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700}
+    .pill.green{background:rgba(16,185,129,.12); color:var(--green); border:1px solid rgba(16,185,129,.35)}
+    .pill.red{background:rgba(239,68,68,.10); color:var(--red); border:1px solid rgba(239,68,68,.35)}
+    .grid-2{display:grid; gap:14px; grid-template-columns:1fr}
+    @media(min-width:900px){.grid-2{grid-template-columns:360px 1fr}}
+    .kv{display:grid;grid-template-columns:160px 1fr;gap:8px;font-size:.95rem}
+    .kv div:nth-child(odd){color:#6b7280}
+    .ok{color:var(--green)}
+    .err{color:var(--red)}
+    .small{font-size:.85rem;color:#6b7280}
     @media print{
       body{background:#fff;color:#000}
       .wrap{margin:0;max-width:none;padding:0}
@@ -63,7 +73,30 @@
   </header>
 
   <div class="wrap">
-    <!-- Email-enabled via FormSubmit -->
+    <!-- RESULT CARD (hidden until submit) -->
+    <section id="resultCard" class="card" style="display:none">
+      <h2 style="margin-top:0">Your Compliance Snapshot</h2>
+      <div class="grid-2">
+        <div>
+          <canvas id="resultChart" width="320" height="320" aria-label="Result chart" role="img"></canvas>
+        </div>
+        <div>
+          <p id="resultHeadline" style="margin:6px 0 10px;font-size:1.1rem"></p>
+          <div class="kv">
+            <div>Strong answers</div><div id="kv-strong">—</div>
+            <div>Gaps</div><div id="kv-gaps">—</div>
+            <div>Total questions</div><div>12</div>
+            <div>Category</div><div id="kv-cat"><span class="pill">—</span></div>
+          </div>
+          <p class="small" style="margin-top:12px">
+            Tip: You can still click <strong>Save/Print PDF</strong> below to export this summary with your responses.
+          </p>
+          <p class="small" id="sendStatus"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM -->
     <form
       id="vaspForm"
       class="card"
@@ -75,14 +108,12 @@
       <input type="hidden" name="_captcha" value="false">
       <input type="hidden" name="_subject" value="New Crypto VASP Assessment Submission">
       <input type="hidden" name="_template" value="table">
-      <!-- Optional: redirect after submit (update this URL if you have a thank-you page) -->
-      <!-- <input type="hidden" name="_next" value="https://your-domain.com/thank-you.html"> -->
       <!-- Honeypot (spam trap) -->
       <input type="text" name="_honey" style="display:none">
 
       <p class="muted notice">
         <strong>Note:</strong> Your answers auto-save in this browser. Use <em>Save/Print PDF</em> to export.
-        When you click <em>Submit</em>, a copy will be sent to <strong>aaraiz@deriskpartners.io</strong>.
+        When you click <em>Submit</em>, a copy will be emailed to <strong>aaraiz@deriskpartners.io</strong> and your result will display below.
       </p>
 
       <section class="row two">
@@ -348,8 +379,11 @@
     </form>
   </div>
 
+  <!-- Chart.js (lightweight CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
   <script>
-    // ---------- Autosave to localStorage (text, radios, checkbox arrays) ----------
+    // ---------- Autosave to localStorage ----------
     const form = document.getElementById('vaspForm');
     const saveBadge = document.getElementById('saveState');
     const printBtn = document.getElementById('printBtn');
@@ -359,7 +393,6 @@
       const data = {};
       Array.from(form.elements).forEach(el => {
         if (!el.name || el.type === 'button' || el.type === 'submit') return;
-
         if (el.type === 'checkbox') {
           const name = el.name;
           if (name.endsWith('[]')) {
@@ -384,25 +417,20 @@
       });
       return data;
     }
-
     function saveDraft() {
       try {
         localStorage.setItem(KEY, JSON.stringify(getFormDataObject()));
         if (saveBadge) saveBadge.textContent = 'Draft saved';
-      } catch (e) {
-        if (saveBadge) saveBadge.textContent = 'Save failed (storage full?)';
-      }
+      } catch (e) { if (saveBadge) saveBadge.textContent = 'Save failed (storage full?)'; }
     }
     function loadDraft() {
       const raw = localStorage.getItem(KEY);
       if (!raw) return;
       const data = JSON.parse(raw);
-
       Object.entries(data).forEach(([name, value]) => {
         const nodes = form.querySelectorAll(`[name="${CSS.escape(name)}"]`);
         if (!nodes.length) return;
         const el = nodes[0];
-
         if (el.type === 'radio') {
           nodes.forEach(r => r.checked = (r.value === value));
           return;
@@ -410,9 +438,7 @@
         if (el.type === 'checkbox') {
           if (name.endsWith('[]') && Array.isArray(value)) {
             nodes.forEach(c => c.checked = value.includes(c.value));
-          } else if (typeof value === 'boolean') {
-            el.checked = value;
-          }
+          } else if (typeof value === 'boolean') { el.checked = value; }
           return;
         }
         if (el.tagName === 'SELECT' && el.multiple && Array.isArray(value)) {
@@ -423,22 +449,124 @@
       });
       if (saveBadge) saveBadge.textContent = 'Draft loaded';
     }
-    function clearDraft() {
-      localStorage.removeItem(KEY);
-      if (saveBadge) saveBadge.textContent = 'Draft cleared';
+    function clearDraft() { localStorage.removeItem(KEY); if (saveBadge) saveBadge.textContent = 'Draft cleared'; }
+    form.addEventListener('input', saveDraft);
+    document.getElementById('resetBtn').addEventListener('click', () => { setTimeout(clearDraft, 0); });
+    printBtn.addEventListener('click', () => { window.print(); });
+    loadDraft();
+
+    // ---------- Scoring + Chart ----------
+    const resultCard = document.getElementById('resultCard');
+    const sendStatus = document.getElementById('sendStatus');
+
+    // Map each key radio group to which values count as "strong"
+    const strongAnswers = {
+      '1. Regulatory Licenses - Status': ['Yes, fully licensed in all jurisdictions'],
+      '2. AML/KYC Program - Maturity': ['Yes, full program with automated monitoring'],
+      '3. Customer Fund Protection - Segregation status': ['Yes, fully segregated with insurance'],
+      '4. Legal Issues - Status': ['No issues'],
+      '5. Geographic Restrictions - Coverage': ['Yes, comprehensive geo-blocking'],
+      '6. Security Framework - Level': ['Yes, certified framework (ISO 27001/SOC 2)'],
+      '7. Management Experience - Level': ['Yes, extensive regulatory experience'],
+      '8. Banking & Vendors - Status': ['Yes, tier-1 banks and compliance tools'],
+      '9. Financial Controls - Level': ['Yes, Big 4 audited with clean opinion'],
+      '10. Regulatory Readiness - Preparedness': ['Yes, actively monitoring and adapting'],
+      // treat either internal framework or external counsel as strong
+      '11. Token/Asset Classification - Framework': ['Yes, internal legal opinion framework','Yes, external counsel reviews'],
+      // monthly/quarterly is strong (annually is okay but not top)
+      '12. Disclosures & Transparency - Frequency': ['Yes, monthly / quarterly']
+    };
+
+    function computeScore() {
+      let strong = 0;
+      Object.keys(strongAnswers).forEach(name => {
+        const nodes = form.querySelectorAll(`input[type="radio"][name="${CSS.escape(name)}"]`);
+        const sel = Array.from(nodes).find(r => r.checked);
+        if (sel && strongAnswers[name].includes(sel.value)) strong++;
+      });
+      return { strong, total: Object.keys(strongAnswers).length };
     }
 
-    // Save on any input changes
-    form.addEventListener('input', saveDraft);
+    let chart; // Chart.js instance
+    function renderChart(strong, total) {
+      const gaps = total - strong;
+      const ctx = document.getElementById('resultChart').getContext('2d');
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Strong', 'Gaps'],
+          datasets: [{
+            data: [strong, gaps],
+            backgroundColor: ['#10b981', '#ef4444'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          plugins: {
+            legend: { position: 'bottom' },
+            tooltip: { enabled: true }
+          },
+          cutout: '65%'
+        }
+      });
+      // text + pills
+      const headline = document.getElementById('resultHeadline');
+      const kvStrong = document.getElementById('kv-strong');
+      const kvGaps = document.getElementById('kv-gaps');
+      const kvCat = document.getElementById('kv-cat');
 
-    // Reset clears storage
-    document.getElementById('resetBtn').addEventListener('click', () => { setTimeout(clearDraft, 0); });
+      const category = (strong >= 8) ? 'Green (Mature)' : 'Red (Needs Work)';
+      headline.innerHTML = `Overall category: <span class="pill ${strong >= 8 ? 'green' : 'red'}">${category}</span>`;
+      kvStrong.textContent = strong;
+      kvGaps.textContent = gaps;
+      kvCat.innerHTML = `<span class="pill ${strong >= 8 ? 'green' : 'red'}">${category}</span>`;
+    }
 
-    // Print to PDF
-    printBtn.addEventListener('click', () => { window.print(); });
+    // ---------- Submit flow: compute + show chart, then email via fetch ----------
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      // 1) Compute and show result
+      const { strong, total } = computeScore();
+      renderChart(strong, total);
+      resultCard.style.display = 'block';
+      window.scrollTo({ top: resultCard.offsetTop - 12, behavior: 'smooth' });
 
-    // Load on start
-    loadDraft();
+      // 2) Send to FormSubmit without leaving page
+      sendStatus.textContent = 'Sending…';
+      try {
+        const fd = new FormData(form);
+        // Add computed fields to the email/table
+        fd.append('Computed - Strong answers', String(strong));
+        fd.append('Computed - Gaps', String(total - strong));
+        fd.append('Computed - Category', (strong >= 8) ? 'Green (Mature)' : 'Red (Needs Work)');
+
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: fd,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (res.ok) {
+          sendStatus.innerHTML = '<span class="ok">Submitted successfully. A copy should arrive at aaraiz@deriskpartners.io.</span>';
+        } else {
+          sendStatus.innerHTML = '<span class="err">Submitted, but email service returned a non-OK response.</span>';
+        }
+      } catch (err) {
+        sendStatus.innerHTML = '<span class="err">Could not send to email service. Please try again or check connectivity.</span>';
+      }
+    });
+
+    // Optional: expose a quick re-check button (uncomment if you want)
+    // const reCheck = document.createElement('button');
+    // reCheck.type = 'button';
+    // reCheck.textContent = 'Recalculate Result';
+    // reCheck.addEventListener('click', () => {
+    //   const { strong, total } = computeScore();
+    //   renderChart(strong, total);
+    //   resultCard.style.display = 'block';
+    // });
+    // document.querySelector('.bar').appendChild(reCheck);
   </script>
 </body>
 </html>
