@@ -516,7 +516,7 @@
       const kvGaps = document.getElementById('kv-gaps');
       const kvCat = document.getElementById('kv-cat');
 
-      const category = (strong >= 8) ? 'Green (Compliance needs some improvement)' : 'Red (Compliance is Satisfactory)';
+      const category = (strong >= 8) ? 'Blue (Compliance needs some improvement)' : 'Yellow (Compliance is Satisfactory)';
       headline.innerHTML = `Overall category: <span class="pill ${strong >= 8 ? 'green' : 'red'}">${category}</span>`;
       kvStrong.textContent = strong;
       kvGaps.textContent = gaps;
