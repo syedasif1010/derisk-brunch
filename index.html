@@ -517,7 +517,7 @@
       const kvCat = document.getElementById('kv-cat');
 
       const category = (strong >= 8) ? 'Blue (Compliance needs some improvement)' : 'Yellow (Compliance is Satisfactory)';
-      headline.innerHTML = `Overall category: <span class="pill ${strong >= 8 ? 'green' : 'red'}">${category}</span>`;
+      headline.innerHTML = `Overall category: <span class="pill ${strong >= 8 ? 'blue' : 'yellow'}">${category}</span>`;
       kvStrong.textContent = strong;
       kvGaps.textContent = gaps;
       kvCat.innerHTML = `<span class="pill ${strong >= 8 ? 'blue' : 'yellow'}">${category}</span>`;
