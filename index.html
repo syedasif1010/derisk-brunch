@@ -201,47 +201,47 @@
         <p class="muted">
           Are customer funds segregated and protected? Are funds held directly or via a third-party custodian (e.g., Fireblocks, Anchorage)?
         </p>
-        <label>3. Customer Fund Protection - Custodian (if any)
-          <input name="3. Customer Fund Protection - Custodian" type="text" placeholder="e.g., Fireblocks, Anchorage" />
+        <label>3a. Customer Fund Protection - Custodian (if any)
+          <input name="3a. Customer Fund Protection - Custodian" type="text" placeholder="e.g., Fireblocks, Anchorage" />
         </label>
-        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Yes, fully segregated with insurance" required> Yes, fully segregated with insurance</label>
-        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Segregated, no insurance"> Segregated, no insurance</label>
-        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Partially segregated"> Partially segregated</label>
-        <label><input type="radio" name="3. Customer Fund Protection - Segregation status" value="Not segregated"> Not segregated</label>
+        <label><input type="radio" name="3a. Customer Fund Protection - Segregation status" value="Yes, fully segregated with insurance" required> Yes, fully segregated with insurance</label>
+        <label><input type="radio" name="3a. Customer Fund Protection - Segregation status" value="Segregated, no insurance"> Segregated, no insurance</label>
+        <label><input type="radio" name="3a. Customer Fund Protection - Segregation status" value="Partially segregated"> Partially segregated</label>
+        <label><input type="radio" name="3a. Customer Fund Protection - Segregation status" value="Not segregated"> Not segregated</label>
         <div class="row two">
-          <label>3. Customer Fund Protection - Cold storage %
-            <input name="3. Customer Fund Protection - Cold storage %" type="number" min="0" max="100" step="1" placeholder="%" />
+          <label>3b. Customer Fund Protection - Cold storage %
+            <input name="3b. Customer Fund Protection - Cold storage %" type="number" min="0" max="100" step="1" placeholder="%" />
           </label>
-          <label>3. Customer Fund Protection - Insurance coverage (USD)
-            <input name="3. Customer Fund Protection - Insurance coverage (USD)" type="number" min="0" step="1" placeholder="$" />
+          <label>3c. Customer Fund Protection - Insurance coverage (USD)
+            <input name="3c. Customer Fund Protection - Insurance coverage (USD)" type="number" min="0" step="1" placeholder="$" />
           </label>
         </div>
       </fieldset>
 
       <!-- 4. Legal Issues -->
       <fieldset>
-        <legend>4. Legal Issues</legend>
+        <legend>4a. Legal Issues</legend>
         <p class="muted">Any ongoing legal/regulatory proceedings or violations in past 3 years?</p>
-        <label><input type="radio" name="4. Legal Issues - Status" value="No issues" required> No issues</label>
-        <label><input type="radio" name="4. Legal Issues - Status" value="Minor issues (resolved)"> Minor issues (resolved)</label>
-        <label><input type="radio" name="4. Legal Issues - Status" value="Active proceedings"> Active proceedings</label>
-        <label><input type="radio" name="4. Legal Issues - Status" value="Major violations/penalties"> Major violations/penalties</label>
-        <label>4. Legal Issues - Details
-          <textarea name="4. Legal Issues - Details" rows="3" placeholder="Specify jurisdiction or regulator"></textarea>
+        <label><input type="radio" name="4a. Legal Issues - Status" value="No issues" required> No issues</label>
+        <label><input type="radio" name="4a. Legal Issues - Status" value="Minor issues (resolved)"> Minor issues (resolved)</label>
+        <label><input type="radio" name="4a. Legal Issues - Status" value="Active proceedings"> Active proceedings</label>
+        <label><input type="radio" name="4a. Legal Issues - Status" value="Major violations/penalties"> Major violations/penalties</label>
+        <label>4b. Legal Issues - Details
+          <textarea name="4b. Legal Issues - Details" rows="3" placeholder="Specify jurisdiction or regulator"></textarea>
         </label>
       </fieldset>
 
       <!-- 5. Geographic Restrictions -->
       <fieldset>
-        <legend>5. Geographic Restrictions</legend>
+        <legend>5a. Geographic Restrictions</legend>
         <p class="muted">Do you block prohibited jurisdictions (sanctioned countries)?</p>
-        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="Yes, comprehensive geo-blocking" required> Yes, comprehensive geo-blocking</label>
-        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="Partial restrictions"> Partial restrictions</label>
-        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="No restrictions"> No restrictions</label>
-        <label><input type="radio" name="5. Geographic Restrictions - Coverage" value="Under development"> Under development</label>
+        <label><input type="radio" name="5a. Geographic Restrictions - Coverage" value="Yes, comprehensive geo-blocking" required> Yes, comprehensive geo-blocking</label>
+        <label><input type="radio" name="5a. Geographic Restrictions - Coverage" value="Partial restrictions"> Partial restrictions</label>
+        <label><input type="radio" name="5a. Geographic Restrictions - Coverage" value="No restrictions"> No restrictions</label>
+        <label><input type="radio" name="5a. Geographic Restrictions - Coverage" value="Under development"> Under development</label>
 
-        <label style="margin-top:8px">5. Geographic Restrictions - Prohibited jurisdictions
-          <input name="5. Geographic Restrictions - Prohibited jurisdictions" type="text" placeholder="e.g., DPRK, Iran" />
+        <label style="margin-top:8px">5b. Geographic Restrictions - Prohibited jurisdictions
+          <input name="5b. Geographic Restrictions - Prohibited jurisdictions" type="text" placeholder="e.g., DPRK, Iran" />
         </label>
         <div>
           <span class="muted">Geo-blocking enforced via:</span>
@@ -253,19 +253,19 @@
 
       <!-- 6. Security Framework -->
       <fieldset>
-        <legend>6. Security Framework</legend>
+        <legend>6a. Security Framework</legend>
         <p class="muted">Do you follow cybersecurity standards and conduct regular audits?</p>
-        <label><input type="radio" name="6. Security Framework - Level" value="Yes, certified framework (ISO 27001/SOC 2)" required> Yes, certified framework (ISO 27001/SOC 2)</label>
-        <label><input type="radio" name="6. Security Framework - Level" value="Internal standards, regular audits"> Internal standards, regular audits</label>
-        <label><input type="radio" name="6. Security Framework - Level" value="External audit without certification"> External audit without certification</label>
-        <label><input type="radio" name="6. Security Framework - Level" value="Basic security measures"> Basic security measures</label>
-        <label><input type="radio" name="6. Security Framework - Level" value="Limited security program"> Limited security program</label>
+        <label><input type="radio" name="6a. Security Framework - Level" value="Yes, certified framework (ISO 27001/SOC 2)" required> Yes, certified framework (ISO 27001/SOC 2)</label>
+        <label><input type="radio" name="6a. Security Framework - Level" value="Internal standards, regular audits"> Internal standards, regular audits</label>
+        <label><input type="radio" name="6a. Security Framework - Level" value="External audit without certification"> External audit without certification</label>
+        <label><input type="radio" name="6a. Security Framework - Level" value="Basic security measures"> Basic security measures</label>
+        <label><input type="radio" name="6a. Security Framework - Level" value="Limited security program"> Limited security program</label>
         <div class="row two">
-          <label>6. Security Framework - Last security audit
-            <input name="6. Security Framework - Last security audit" type="date" />
+          <label>6b. Security Framework - Last security audit
+            <input name="6b. Security Framework - Last security audit" type="date" />
           </label>
-          <label>6. Security Framework - Bug bounty program
-            <select name="6. Security Framework - Bug bounty program">
+          <label>6c. Security Framework - Bug bounty program
+            <select name="6c. Security Framework - Bug bounty program">
               <option value="">— Select —</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
@@ -276,76 +276,76 @@
 
       <!-- 7. Management Experience -->
       <fieldset>
-        <legend>7. Management Experience</legend>
+        <legend>7a. Management Experience</legend>
         <p class="muted">Do key executives have financial services/compliance experience?</p>
-        <label><input type="radio" name="7. Management Experience - Level" value="Yes, extensive regulatory experience" required> Yes, extensive regulatory experience</label>
-        <label><input type="radio" name="7. Management Experience - Level" value="Some financial services background"> Some financial services background</label>
-        <label><input type="radio" name="7. Management Experience - Level" value="Limited relevant experience"> Limited relevant experience</label>
+        <label><input type="radio" name="7a. Management Experience - Level" value="Yes, extensive regulatory experience" required> Yes, extensive regulatory experience</label>
+        <label><input type="radio" name="7a. Management Experience - Level" value="Some financial services background"> Some financial services background</label>
+        <label><input type="radio" name="7a. Management Experience - Level" value="Limited relevant experience"> Limited relevant experience</label>
         <div class="row two">
-          <label>7. Management Experience - CEO background
-            <input name="7. Management Experience - CEO background" type="text" />
+          <label>7b. Management Experience - CEO background
+            <input name="7b. Management Experience - CEO background" type="text" />
           </label>
-          <label>7. Management Experience - CCO background
-            <input name="7. Management Experience - CCO background" type="text" />
+          <label>7c. Management Experience - CCO background
+            <input name="7c. Management Experience - CCO background" type="text" />
           </label>
         </div>
       </fieldset>
 
       <!-- 8. Banking & Key Vendors -->
       <fieldset>
-        <legend>8. Banking & Key Vendors</legend>
+        <legend>8a. Banking & Key Vendors</legend>
         <p class="muted">Do you have established banking relationships and compliance vendors?</p>
-        <label><input type="radio" name="8. Banking & Vendors - Status" value="Yes, tier-1 banks and compliance tools" required> Yes, tier-1 banks and compliance tools</label>
-        <label><input type="radio" name="8. Banking & Vendors - Status" value="Regional banks, basic tools"> Regional banks, basic tools</label>
-        <label><input type="radio" name="8. Banking & Vendors - Status" value="Limited banking, developing tools"> Limited banking, developing tools</label>
-        <label><input type="radio" name="8. Banking & Vendors - Status" value="No stable banking relationships"> No stable banking relationships</label>
+        <label><input type="radio" name="8a. Banking & Vendors - Status" value="Yes, tier-1 banks and compliance tools" required> Yes, tier-1 banks and compliance tools</label>
+        <label><input type="radio" name="8a. Banking & Vendors - Status" value="Regional banks, basic tools"> Regional banks, basic tools</label>
+        <label><input type="radio" name="8a. Banking & Vendors - Status" value="Limited banking, developing tools"> Limited banking, developing tools</label>
+        <label><input type="radio" name="8a. Banking & Vendors - Status" value="No stable banking relationships"> No stable banking relationships</label>
 
         <div class="row two">
-          <label>8. Banking & Vendors - Primary bank
-            <input name="8. Banking & Vendors - Primary bank" type="text" />
+          <label>8b. Banking & Vendors - Primary bank
+            <input name="8b. Banking & Vendors - Primary bank" type="text" />
           </label>
-          <label>8. Banking & Vendors - Fiat on/off ramps managed
-            <select name="8. Banking & Vendors - Fiat on/off ramps managed">
+          <label>8c. Banking & Vendors - Fiat on/off ramps managed
+            <select name="8c. Banking & Vendors - Fiat on/off ramps managed">
               <option value="">— Select —</option>
               <option value="Internal">Internal</option>
               <option value="Third-party partner">Third-party partner</option>
             </select>
           </label>
         </div>
-        <label>8. Banking & Vendors - Partner name (if applicable)
-          <input name="8. Banking & Vendors - Partner name" type="text" />
+        <label>8d. Banking & Vendors - Partner name (if applicable)
+          <input name="8d. Banking & Vendors - Partner name" type="text" />
         </label>
       </fieldset>
 
-      <!-- 9. Financial Controls -->
+      <!-- 9a. Financial Controls -->
       <fieldset>
-        <legend>9. Financial Controls</legend>
+        <legend>9a. Financial Controls</legend>
         <p class="muted">Are you audited and maintain proper financial controls?</p>
-        <label><input type="radio" name="9. Financial Controls - Level" value="Yes, Big 4 audited with clean opinion" required> Yes, Big 4 audited with clean opinion</label>
-        <label><input type="radio" name="9. Financial Controls - Level" value="Regional firm audited"> Regional firm audited</label>
-        <label><input type="radio" name="9. Financial Controls - Level" value="Documented internal controls with review"> Documented internal controls with review</label>
-        <label><input type="radio" name="9. Financial Controls - Level" value="Limited financial controls"> Limited financial controls</label>
-        <label>9. Financial Controls - Last audit date
-          <input name="9. Financial Controls - Last audit date" type="date" />
+        <label><input type="radio" name="9a. Financial Controls - Level" value="Yes, Big 4 audited with clean opinion" required> Yes, Big 4 audited with clean opinion</label>
+        <label><input type="radio" name="9a. Financial Controls - Level" value="Regional firm audited"> Regional firm audited</label>
+        <label><input type="radio" name="9a. Financial Controls - Level" value="Documented internal controls with review"> Documented internal controls with review</label>
+        <label><input type="radio" name="9a. Financial Controls - Level" value="Limited financial controls"> Limited financial controls</label>
+        <label>9b. Financial Controls - Last audit date
+          <input name="9b. Financial Controls - Last audit date" type="date" />
         </label>
       </fieldset>
 
-      <!-- 10. Regulatory Readiness -->
+      <!-- 10a. Regulatory Readiness -->
       <fieldset>
-        <legend>10. Regulatory Readiness</legend>
+        <legend>10a. Regulatory Readiness</legend>
         <p class="muted">Are you prepared for upcoming regulatory changes?</p>
-        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Yes, actively monitoring and adapting" required> Yes, actively monitoring and adapting</label>
-        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Aware of changes, planning adaptation"> Aware of changes, planning adaptation</label>
-        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Limited awareness"> Limited awareness</label>
-        <label><input type="radio" name="10. Regulatory Readiness - Preparedness" value="Not prepared for changes"> Not prepared for changes</label>
-        <label>10. Regulatory Readiness - Biggest upcoming regulatory concern
-          <input name="10. Regulatory Readiness - Biggest concern" type="text" />
+        <label><input type="radio" name="10a. Regulatory Readiness - Preparedness" value="Yes, actively monitoring and adapting" required> Yes, actively monitoring and adapting</label>
+        <label><input type="radio" name="10a. Regulatory Readiness - Preparedness" value="Aware of changes, planning adaptation"> Aware of changes, planning adaptation</label>
+        <label><input type="radio" name="10a. Regulatory Readiness - Preparedness" value="Limited awareness"> Limited awareness</label>
+        <label><input type="radio" name="10a. Regulatory Readiness - Preparedness" value="Not prepared for changes"> Not prepared for changes</label>
+        <label>10b. Regulatory Readiness - Biggest upcoming regulatory concern
+          <input name="10b. Regulatory Readiness - Biggest concern" type="text" />
         </label>
         <p class="muted" style="margin-top:8px">Are you in industry groups (e.g., TRM Labs, GBBC, ADGM Sandbox)?</p>
-        <label><input type="radio" name="10. Regulatory Readiness - Industry groups" value="Yes (list provided below)" required> Yes (list below)</label>
-        <label><input type="radio" name="10. Regulatory Readiness - Industry groups" value="No"> No</label>
-        <label>10. Regulatory Readiness - Working Groups
-          <textarea name="10. Regulatory Readiness - Working Groups" rows="2"></textarea>
+        <label><input type="radio" name="10b. Regulatory Readiness - Industry groups" value="Yes (list provided below)" required> Yes (list below)</label>
+        <label><input type="radio" name="10b. Regulatory Readiness - Industry groups" value="No"> No</label>
+        <label>10c. Regulatory Readiness - Working Groups
+          <textarea name="10c. Regulatory Readiness - Working Groups" rows="2"></textarea>
         </label>
       </fieldset>
 
