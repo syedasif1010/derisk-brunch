@@ -520,7 +520,7 @@
       headline.innerHTML = `Overall category: <span class="pill ${strong >= 8 ? 'green' : 'red'}">${category}</span>`;
       kvStrong.textContent = strong;
       kvGaps.textContent = gaps;
-      kvCat.innerHTML = `<span class="pill ${strong >= 8 ? 'green' : 'red'}">${category}</span>`;
+      kvCat.innerHTML = `<span class="pill ${strong >= 8 ? 'blue' : 'yellow'}">${category}</span>`;
     }
 
     // ---------- Submit flow: compute + show chart, then email via fetch ----------
@@ -539,7 +539,7 @@
         // Add computed fields to the email/table
         fd.append('Computed - Strong answers', String(strong));
         fd.append('Computed - Gaps', String(total - strong));
-        fd.append('Computed - Category', (strong >= 8) ? 'Green (Compliance needs some improvement)' : 'Red (Compliance is Satisfactory)');
+        fd.append('Computed - Category', (strong >= 8) ? 'Blue (Compliance needs some improvement)' : 'Yellow (Compliance is Satisfactory)');
 
         const res = await fetch(form.action, {
           method: 'POST',
