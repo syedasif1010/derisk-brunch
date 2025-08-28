@@ -49,7 +49,7 @@
     .pill.red{background:rgba(239,68,68,.10); color:var(--red); border:1px solid rgba(239,68,68,.35)}
     .grid-2{display:grid; gap:14px; grid-template-columns:1fr}
     @media(min-width:900px){.grid-2{grid-template-columns:360px 1fr}}
-    .kv{display:grid;grid-template-columns:160px 1fr;gap:8px;font-size:.95rem}
+    .kv{display:grid;grid-template-columns:210px 1fr;gap:8px;font-size:.95rem}
     .kv div:nth-child(odd){color:#6b7280}
     .ok{color:var(--green)}
     .err{color:var(--red)}
@@ -83,8 +83,8 @@
         <div>
           <p id="resultHeadline" style="margin:6px 0 10px;font-size:1.1rem"></p>
           <div class="kv">
-            <div>Points earned</div><div id="kv-strong">—</div>
-            <div>Points remaining</div><div id="kv-gaps">—</div>
+            <div>Satisfactory points</div><div id="kv-strong">—</div>
+            <div>Needs improvement points</div><div id="kv-gaps">—</div>
             <div>Total questions</div><div>12</div>
             <div>Percent score</div><div id="kv-pct">—</div>
             <div>Category</div><div id="kv-cat"><span class="pill">—</span></div>
@@ -560,7 +560,7 @@
       chart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-          labels: ['Points Earned', 'Remaining'],
+          labels: ['Satisfactory', 'Needs Improvement'],
           datasets: [{
             data: [earned, Math.max(total - earned, 0)],
             backgroundColor: ['#3b82f6', '#facc15'],
@@ -582,7 +582,7 @@
       const kvPct    = document.getElementById('kv-pct');
       const kvCat    = document.getElementById('kv-cat');
 
-      const category = (percent >= 70) ? 'Satisfactory' : 'Needs Attention';
+      const category = (percent >= 70) ? 'Satisfactory' : 'Needs Improvement';
       const pillCls  = (percent >= 70) ? 'green' : 'red';
 
       headline.innerHTML = `Overall category: <span class="pill ${pillCls}">${category}</span>`;
@@ -611,7 +611,7 @@
         fd.append('Computed - Points remaining', (total - earned).toFixed(2));
         fd.append('Computed - Total questions', String(total));
         fd.append('Computed - Percent', percent.toFixed(1) + '%');
-        fd.append('Computed - Category', (percent >= 70) ? 'Satisfactory' : 'Needs Attention');
+        fd.append('Computed - Category', (percent >= 70) ? 'Satisfactory' : 'Needs Improvement');
 
         const res = await fetch(form.action, {
           method: 'POST',
@@ -620,7 +620,7 @@
         });
 
         if (res.ok) {
-          sendStatus.innerHTML = '<span class="ok">Submitted successfully. A copy should arrive at aaraiz@deriskpartners.io.</span>';
+          sendStatus.innerHTML = '<span class="ok">Submitted successfully. A copy should arrive at deriskpartners.io.</span>';
         } else {
           sendStatus.innerHTML = '<span class="err">Submitted, but email service returned a non-OK response.</span>';
         }
