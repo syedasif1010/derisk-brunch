@@ -13,11 +13,18 @@
     }
     *{box-sizing:border-box}
     html,body{margin:0;height:100%}
+
+    /* ---- New layout so controls sit at the bottom ---- */
+    html, body { height: 100%; }
     body{
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
       background:var(--bg); color:var(--ink);
+      display:flex; flex-direction:column; min-height:100vh;
     }
-    .wrap{max-width:1100px;margin:32px auto 80px;padding:0 16px}
+    .wrap{max-width:1100px;margin:32px auto 80px;padding:0 16px; flex:1 0 auto;}
+    /* Make the form a column so the controls can be pushed down */
+    #vaspForm { display:flex; flex-direction:column; min-height:100%; }
+
     header{background:var(--brand);color:#fff;padding:24px 20px;text-align:center}
     .logo img{max-height:120px;height:auto;width:auto;margin-bottom:12px}
     h1{font-size:clamp(1.8rem,3vw,2.5rem);margin:0;color:#fff}
@@ -34,7 +41,15 @@
     input:focus, textarea:focus, select:focus{ box-shadow:var(--ring); border-color:var(--brand)}
     .row{display:grid; gap:10px; grid-template-columns:1fr}
     @media(min-width:720px){.row.two{grid-template-columns:1fr 1fr}}
-    .controls{position:sticky; bottom:0; inset-inline:0; background:linear-gradient(180deg,rgba(245,247,251,0),rgba(245,247,251,.95)); padding:14px 0 0; margin-top:18px}
+
+    /* ---- Controls now anchored at the end of the form ---- */
+    .controls{
+      position: static;               /* was: sticky */
+      background: transparent;        /* remove gradient */
+      padding: 14px 0 0;
+      margin-top: auto;               /* push to bottom of the form/page */
+      inset: auto;
+    }
     .bar{display:flex; gap:10px; flex-wrap:wrap}
     button{
       appearance:none;border:1px solid #cfd6e4; background:#fff;color:var(--ink);
@@ -43,6 +58,7 @@
     button.primary{background:var(--brand); border-color:transparent; color:#fff}
     button:focus{box-shadow:var(--ring)}
     .footer{margin-top:18px; font-size:.85rem; color:#374151}
+
     .notice{margin-top:8px; font-size:.9rem}
     .pill{display:inline-block;padding:4px 10px;border-radius:999px;font-weight:700}
     .pill.green{background:rgba(16,185,129,.12); color:var(--green); border:1px solid rgba(16,185,129,.35)}
@@ -54,6 +70,7 @@
     .ok{color:var(--green)}
     .err{color:var(--red)}
     .small{font-size:.85rem;color:#6b7280}
+
     @media print{
       body{background:#fff;color:#000}
       .wrap{margin:0;max-width:none;padding:0}
@@ -356,8 +373,8 @@
         <p class="muted">Do you maintain a framework for determining whether an asset is a security or requires regulatory treatment?</p>
         <label><input type="radio" name="11. Token/Asset Classification - Framework" value="Yes, internal legal opinion framework" required> Yes, internal legal opinion framework</label>
         <label><input type="radio" name="11. Token/Asset Classification - Framework" value="Yes, external counsel reviews"> Yes, external counsel reviews</label>
-        <label><input type="radio" name="11. Token/Asset Classification - Framework" value="No formal framework"> No formal framework</label>
         <label><input type="radio" name="11. Token/Asset Classification - Framework" value="N/A (no listing/token services)"> N/A (no listing/token services)</label>
+        <label><input type="radio" name="11. Token/Asset Classification - Framework" value="No formal framework"> No formal framework</label>
       </fieldset>
 
       <!-- 12. Disclosures & Transparency -->
@@ -603,6 +620,7 @@
       window.scrollTo({ top: resultCard.offsetTop - 12, behavior: 'smooth' });
 
       // 2) Send to FormSubmit without leaving page
+      const sendStatus = document.getElementById('sendStatus');
       sendStatus.textContent = 'Sending…';
       try {
         const fd = new FormData(form);
